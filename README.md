@@ -64,12 +64,8 @@ python ecs_cost_analyzer.py --days 14 --cluster production
 
 ### Output
 
-Displays a table with:
-- Date
-- Service Name (from `aws:ecs:serviceName` tag)
-- Usage Type (vCPU hours, memory, etc.)
-- Cost (USD)
-- Daily totals
+<img width="629" height="402" alt="Screenshot 2025-12-07 at 17 38 18" src="https://github.com/user-attachments/assets/2b3d0821-128c-4df2-b45e-29f2383f249c" />
+
 
 ## Troubleshooting
 
