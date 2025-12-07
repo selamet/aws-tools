@@ -2,6 +2,14 @@
 
 Practical AWS scripts built for task automation, debugging, and cloud resource management.
 
+## Scripts Overview
+
+| Script | Description | What It Does |
+|--------|-------------|--------------|
+| `ecs_cost_analyzer.py` | ECS Cost Analyzer | Analyzes ECS service costs by day, grouped by service name and usage type. Shows daily cost breakdowns and totals. |
+| `lambda_cost_analyzer.py` | Lambda Cost Analyzer | Analyzes Lambda function costs in two ways: actual costs from Cost Explorer and estimated costs per function from CloudWatch metrics. Shows real usage data (invocations, duration). |
+| `ecs_task_autoscaler.py` | ECS Task Autoscaler | Automatically scales ECS workers based on RabbitMQ queue size. Scales up immediately, scales down with delay to prevent flapping. Can be integrated into any scheduling system. |
+
 ## Requirements
 
 - Python 3.6+
