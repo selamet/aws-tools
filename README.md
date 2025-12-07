@@ -110,6 +110,12 @@ python lambda_cost_analyzer.py --region us-east-1
   - Data Transfer costs
   - Other AWS charges
 
+ <img width="725" height="381" alt="Screenshot 2025-12-07 at 18 02 21" src="https://github.com/user-attachments/assets/ae2b091d-98c6-429a-a058-f4197dfc8ed2" />
+
+<img width="842" height="307" alt="Screenshot 2025-12-07 at 18 02 40" src="https://github.com/user-attachments/assets/c3f4b7d4-3f48-40fd-ade0-2e3757612ed8" />
+
+
+
 ### How It Works
 
 1. **Part 1** fetches actual costs from Cost Explorer API (real billing data)
