@@ -7,6 +7,7 @@ Practical AWS scripts built for task automation, debugging, and cloud resource m
 | Script | Description | What It Does |
 |--------|-------------|--------------|
 | `ecs_cost_analyzer.py` | ECS Cost Analyzer | Analyzes ECS service costs by day, grouped by service name and usage type. Shows daily cost breakdowns and totals. |
+| `ec2_cost_analyzer.py` | EC2 Cost Analyzer | Analyzes EC2 costs (Compute & Other) by day, grouped by Tag (default: Name) and usage type. Shows daily cost breakdowns. |
 | `lambda_cost_analyzer.py` | Lambda Cost Analyzer | Analyzes Lambda function costs in two ways: actual costs from Cost Explorer and estimated costs per function from CloudWatch metrics. Shows real usage data (invocations, duration). |
 | `ecs_task_autoscaler.py` | ECS Task Autoscaler | Automatically scales ECS workers based on RabbitMQ queue size. Scales up immediately, scales down with delay to prevent flapping. Can be integrated into any scheduling system. |
 
@@ -79,6 +80,37 @@ python ecs_cost_analyzer.py --days 14 --cluster production
 ### Output
 
 <img width="629" height="402" alt="Screenshot 2025-12-07 at 17 38 18" src="https://github.com/user-attachments/assets/2b3d0821-128c-4df2-b45e-29f2383f249c" />
+
+## Script: ec2_cost_analyzer.py
+
+Analyzes EC2 costs for "Amazon Elastic Compute Cloud - Compute" and "EC2 - Other" services. Groups costs by a specified tag (default: `Name`) and displays daily totals.
+
+### Usage
+
+```bash
+# Last 7 days (default) - grouped by Name tag
+python ec2_cost_analyzer.py
+
+# Last 30 days
+python ec2_cost_analyzer.py --days 30
+
+# Group by a different tag (e.g., Environment)
+python ec2_cost_analyzer.py --tag Environment
+```
+
+### Parameters
+
+- `--days`: Number of days to analyze (default: 7)
+- `--tag`: Cost Allocation Tag to group by (default: 'Name')
+
+### Output
+
+Detailed table showing:
+- Date
+- Tag Value (e.g., Instance Name)
+- Usage Type (e.g., BoxUsage:t3.medium)
+- Cost
+
 
 ## Script: lambda_cost_analyzer.py
 
@@ -242,6 +274,10 @@ Returns a dictionary with action taken:
 - **"Error fetching data"**: Check AWS credentials and IAM permissions
 - **"No data found"**: Verify tags are active in Cost Explorer preferences
 - Tags may take a few hours to appear after enabling in Cost Explorer
+
+### EC2 Cost Analyzer
+- **"No Name Tag"**: The script looks for the 'Name' tag by default. Ensure your instances are tagged and 'Name' is enabled as a Cost Allocation Tag in billing console.
+- **"No data found"**: Check permissions or credentials. Note that this script filters for EC2 services specifically.
 
 ### Lambda Cost Analyzer
 - **"No Lambda functions found"**: Check region setting or AWS credentials
